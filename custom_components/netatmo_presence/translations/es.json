@@ -1,0 +1,93 @@
+{
+  "application_credentials": {
+    "description": "Crea una app en [Netatmo Connect]({dev_url}) y pon como redirect URI `{redirect_url}`. Después escribe aquí su client ID y client secret. Usa una app que no use ninguna otra integración: Netatmo solo permite un webhook por app."
+  },
+  "config": {
+    "step": {
+      "pick_implementation": {
+        "title": "Elige el método de autenticación"
+      },
+      "reauth_confirm": {
+        "title": "Vuelve a iniciar sesión en Netatmo",
+        "description": "El token de Netatmo ha dejado de funcionar. Inicia sesión otra vez para seguir controlando tus Presence."
+      }
+    },
+    "abort": {
+      "already_configured": "Esta cuenta de Netatmo ya está configurada.",
+      "reauth_successful": "Sesión iniciada de nuevo.",
+      "wrong_account": "Has iniciado sesión con otra cuenta de Netatmo.",
+      "cannot_connect": "No se pudo conectar con la API de Netatmo.",
+      "no_cameras": "No hay ninguna Netatmo Presence en esta cuenta.",
+      "missing_configuration": "Añade primero las credenciales de la app de Netatmo.",
+      "missing_credentials": "Añade primero las credenciales de la app de Netatmo.",
+      "authorize_url_timeout": "Se agotó el tiempo al generar la URL de autorización.",
+      "no_url_available": "No hay URL disponible. Revisa la configuración de red de Home Assistant.",
+      "oauth_error": "Netatmo devolvió un token no válido.",
+      "oauth_failed": "Error al obtener el token de Netatmo.",
+      "oauth_timeout": "Se agotó el tiempo al obtener el token de Netatmo.",
+      "oauth_unauthorized": "Netatmo rechazó la autorización.",
+      "user_rejected_authorize": "Autorización cancelada."
+    },
+    "create_entry": {
+      "default": "Sesión iniciada en Netatmo."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de Netatmo Presence",
+        "data": {
+          "off_mode": "Al apagar la luz, pasar a",
+          "motion_timeout": "Los sensores de movimiento siguen activos durante",
+          "scan_interval": "Intervalo de consulta",
+          "use_webhook": "Recibir el movimiento al instante (webhook)"
+        },
+        "data_description": {
+          "off_mode": "Auto mantiene la luz reaccionando a las detecciones de noche. Apagado la desactiva.",
+          "motion_timeout": "Segundos que un sensor de movimiento sigue activo tras una detección.",
+          "scan_interval": "Segundos entre actualizaciones de estado. Netatmo permite unas 500 peticiones por hora.",
+          "use_webhook": "Necesita Home Assistant accesible desde internet por HTTPS en el puerto 443, o Home Assistant Cloud. Sin esto, los eventos se consultan periódicamente."
+        }
+      }
+    }
+  },
+  "selector": {
+    "off_mode": {
+      "options": {
+        "auto": "Automático",
+        "off": "Apagado"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "motion": { "name": "Movimiento" },
+      "human": { "name": "Persona" },
+      "animal": { "name": "Animal" },
+      "vehicle": { "name": "Vehículo" }
+    },
+    "light": {
+      "floodlight": { "name": "Foco" }
+    },
+    "number": {
+      "intensity": { "name": "Intensidad del foco" }
+    },
+    "select": {
+      "floodlight_mode": {
+        "name": "Modo del foco",
+        "state": {
+          "on": "Encendido",
+          "off": "Apagado",
+          "auto": "Automático"
+        }
+      }
+    },
+    "switch": {
+      "night_person": { "name": "Noche: encender con persona" },
+      "night_vehicle": { "name": "Noche: encender con vehículo" },
+      "night_animal": { "name": "Noche: encender con animal" },
+      "night_movement": { "name": "Noche: encender con cualquier movimiento" },
+      "night_always": { "name": "Noche: siempre encendido" }
+    }
+  }
+}

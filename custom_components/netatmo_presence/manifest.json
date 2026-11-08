@@ -1,0 +1,14 @@
+{
+  "domain": "netatmo_presence",
+  "name": "Netatmo Presence",
+  "after_dependencies": ["cloud"],
+  "codeowners": ["@xcrittpm"],
+  "config_flow": true,
+  "dependencies": ["application_credentials", "webhook"],
+  "documentation": "https://github.com/xcrittpm/ha-netatmo-presence",
+  "integration_type": "hub",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/xcrittpm/ha-netatmo-presence/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
